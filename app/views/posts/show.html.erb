@@ -1,1 +1,14 @@
-
+<h1><%= @post.title %></h1>
+<h3><%= @post.content %></h3>
+Categories: <%= @post.categories.map(&:name) %>
+<ul>
+<% @post.comments.each do |c| %>
+    <li><%= c.user.username %> : <%= c.content %>
+<% end %>
+</ul>
+Commentators: 
+<ul>
+<%= @post.users.distinct.each do |u| %>
+    <li><%= link_to u.username, user_path(u) %>
+<% end %>
+</ul>
